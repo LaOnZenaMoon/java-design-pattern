@@ -1,0 +1,15 @@
+plugins {
+
+}
+
+ext {
+
+}
+
+dependencies {
+    testImplementation 'com.github.javafaker:javafaker:0.12'
+}
+
+test {
+    useJUnitPlatform()
+}
