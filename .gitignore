@@ -1,12 +1,8 @@
 HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**
 !**/src/test/**
 application.pid
 generated
-gradle.properties
 logs
 
 ### STS ###
@@ -34,3 +30,14 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### Querydsl ###
+/querydsl
+
+### Gradle ###
+.gradle
+/gradle
+!gradle/wrapper/gradle-wrapper.jar
+/build
+gradlew
+gradlew.bat
