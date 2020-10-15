@@ -1,2 +1,5 @@
 rootProject.name = 'java-design-pattern'
 include 'design-pattern'
+include 'thread'
+include 'generics'
+
