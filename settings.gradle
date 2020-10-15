@@ -1,4 +1,4 @@
-rootProject.name = 'java-design-pattern'
+rootProject.name = 'java-exercise'
 include 'design-pattern'
 include 'thread'
 include 'generics'
