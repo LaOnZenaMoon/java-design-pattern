@@ -26,17 +26,4 @@ public class ThreadTest {
         thread2.start();
     }
 
-    @Test
-    void criticalSectionTest() {
-        Calculator calculator = new Calculator();
-
-        //User1
-        Thread user1 = new Thread(() -> calculator.setMemory(100));
-        user1.start();
-
-        //User2
-        Thread user2 = new Thread(() -> calculator.setMemory(50));
-        user2.start();
-    }
-
 }
