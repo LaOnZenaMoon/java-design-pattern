@@ -21,6 +21,7 @@ public class ThreadBlocking {
             public void run() {
                 try {
                     System.out.println("Thread2 start");
+                    //Thread1 이 완료될때까지 블로킹
                     String result = future.get();
                     System.out.println("result = " + result);
                     System.out.println("Thread2 end");
