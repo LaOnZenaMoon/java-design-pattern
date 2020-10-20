@@ -2,6 +2,11 @@ package lozm.chatting;
 
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.geometry.Insets;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -15,13 +20,19 @@ import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.ThreadPoolExecutor;
 
 public class ServerExample extends Application {
 
     ExecutorService executorService;
     ServerSocketChannel serverSocketChannel;
     List<Client> connections = new Vector<Client>();
+
+    TextArea textArea;
+    Button btnStartStop;
+
+    public static void main(String[] args) {
+        launch(args);
+    }
 
     private void startServer() {
         executorService = Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
@@ -159,9 +170,37 @@ public class ServerExample extends Application {
 
     }
 
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
+        BorderPane root = new BorderPane();
+        root.setPrefSize(500, 300);
 
+        textArea = new TextArea();
+        textArea.setEditable(false);
+        BorderPane.setMargin(textArea, new Insets(0, 0, 2, 0));
+        root.setCenter(textArea);
+
+        btnStartStop = new Button("start");
+        btnStartStop.setPrefHeight(30);
+        btnStartStop.setMaxWidth(Double.MAX_VALUE);
+        btnStartStop.setOnAction(e -> {
+            if(btnStartStop.getText().equals("start")) startServer();
+            else if(btnStartStop.getText().equals("stop")) stopServer();
+        });
+        root.setBottom(btnStartStop);
+
+        Scene scene = new Scene(root);
+//        scene.getStylesheets().add(getClass().getResource("app.css").toString());
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("Server");
+        primaryStage.setOnCloseRequest(event -> stopServer());
+        primaryStage.show();
+    }
+
+    void displayText(String message) {
+        textArea.appendText(message + "\n");
     }
 
 }
