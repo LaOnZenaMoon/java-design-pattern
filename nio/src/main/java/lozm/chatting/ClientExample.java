@@ -42,7 +42,7 @@ public class ClientExample extends Application {
                         try {
                             displayText("[연결 완료: " + socketChannel.getRemoteAddress() + "]");
                             btnConnect.setText("stop");
-                            btnConnect.setDisable(false);
+                            btnSend.setDisable(false);
                         } catch (Exception e) {
                             e.printStackTrace();
                             Platform.runLater(() -> displayText("[서버 통신 안 됨]"));
@@ -137,7 +137,7 @@ public class ClientExample extends Application {
         textField.setPrefSize(60, 30);
         BorderPane.setMargin(textArea, new Insets(0, 1, 1, 1));
 
-        btnConnect = new Button();
+        btnConnect = new Button("start");
         btnConnect.setPrefSize(60, 30);
         btnConnect.setOnAction(e -> {
             if(btnConnect.getText().equals("start")) startClient();
@@ -147,9 +147,9 @@ public class ClientExample extends Application {
         btnSend = new Button("send");
         btnSend.setPrefSize(60, 30);
         btnSend.setDisable(true);
-        btnSend.setOnAction(e -> send(textArea.getText()));
+        btnSend.setOnAction(e -> send(textField.getText()));
 
-        bottom.setCenter(textArea);
+        bottom.setCenter(textField);
         bottom.setLeft(btnConnect);
         bottom.setRight(btnSend);
         root.setBottom(bottom);
