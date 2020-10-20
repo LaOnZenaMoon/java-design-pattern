@@ -2,4 +2,5 @@ rootProject.name = 'java-exercise'
 include 'design-pattern'
 include 'thread'
 include 'generics'
+include 'nio'
 
