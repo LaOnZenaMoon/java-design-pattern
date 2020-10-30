@@ -6,10 +6,12 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
+import java.nio.ByteBuffer;
 import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.Charset;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
@@ -146,10 +148,67 @@ public class ServerExample extends Application {
 
         void receive(SelectionKey selectionKey) {
             //데이터 받기 코드
+            try {
+                ByteBuffer byteBuffer = ByteBuffer.allocate(100);
+
+                //상대방이 비정상 종료를 했을 경우 자동 IOExcetpion 발생
+                int byteCount = socketChannel.read(byteBuffer);
+
+                //상대방이 SocketChannel 의 close() 메소드를 호출하는 경우
+                if(byteCount == -1) throw new IOException();
+
+                String message = "[연결 수락:" + socketChannel.getRemoteAddress() + ": " + Thread.currentThread().getName() + "]";
+                Platform.runLater(() -> displayText(message));
+
+                //문자열 반환
+                byteBuffer.flip();
+                Charset charset = Charset.forName("UTF-8");
+                String data = charset.decode(byteBuffer).toString();
+
+                for (Client client : connections) {
+                    //모든 클라이언트에게 문자열을 전송하는 코드
+                    SelectionKey key = client.socketChannel.keyFor(selector);
+                    key.interestOps(SelectionKey.OP_WRITE);
+                }
+
+                //변경된 작업 유형을 감지하도록 하기 위해 Selector 의 select() 블로킹을 해제하고 다시 실행하도록 한다.
+                selector.wakeup();
+            } catch (Exception e) {
+                try {
+                    connections.remove(this);
+                    String message = "[클라이언트 통신 안 됨: " + socketChannel.getRemoteAddress() + ": " + Thread.currentThread().getName() + "]";
+                    Platform.runLater(() -> displayText(message));
+                    socketChannel.close();
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
         }
 
         void send(SelectionKey selectionKey) {
             //데이터 전송 코드
+            try {
+                Charset charset = Charset.forName("UTF-8");
+                ByteBuffer byteBuffer = charset.encode(sendData);
+
+                //데이터 보내기
+                socketChannel.write(byteBuffer);
+
+                //작업 유형 변경
+                selectionKey.interestOps(SelectionKey.OP_READ);
+
+                //변경된 작업 유형을 감지하도록 Selector 의 select() 블로킹 해제
+                selector.wakeup();
+            } catch (Exception e) {
+                try {
+                    connections.remove(this);
+                    String message = "[클라이언트 통신 안 됨: " + socketChannel.getRemoteAddress() + ": " + Thread.currentThread().getName() + "]";
+                    Platform.runLater(() -> displayText(message));
+                    socketChannel.close();
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+            }
         }
     }
 
