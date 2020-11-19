@@ -1,4 +1,4 @@
-package lozm.observer.weather;
+package lozm.observer.weather.custom;
 
 public class ForecastDisplay implements Observer, DisplayElement {
 
