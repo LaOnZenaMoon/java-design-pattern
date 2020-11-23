@@ -1,4 +1,4 @@
-package lozm.factory;
+package lozm.factory.simple;
 
 public class StoreManage {
 
