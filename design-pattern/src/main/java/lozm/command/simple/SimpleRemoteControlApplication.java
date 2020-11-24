@@ -1,6 +1,6 @@
 package lozm.command.simple;
 
-public class RemoteControlApplication {
+public class SimpleRemoteControlApplication {
 
     public static void main(String[] args) {
         SimpleRemoteControl simpleRemoteControl = new SimpleRemoteControl();
