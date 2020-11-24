@@ -6,7 +6,12 @@ public class NoCommand implements Command {
 
     @Override
     public void execute() {
-        System.out.println("Nothing");
+        System.out.println("Execute nothing.");
+    }
+
+    @Override
+    public void undo() {
+        System.out.println("Undo Nothing.");
     }
 
 }

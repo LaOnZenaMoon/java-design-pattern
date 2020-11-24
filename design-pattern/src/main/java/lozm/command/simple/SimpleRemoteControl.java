@@ -1,5 +1,6 @@
 package lozm.command.simple;
 
+// Invoker
 public class SimpleRemoteControl {
 
     Command slot;
