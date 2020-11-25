@@ -1,4 +1,4 @@
-package lozm.command;
+package lozm.command.light;
 
 import lozm.command.simple.Command;
 import lozm.command.simple.Light;

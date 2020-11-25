@@ -1,16 +1,15 @@
-package lozm.command;
+package lozm.command.light;
 
 import lozm.command.simple.Command;
 
 // Invoker
-public class RemoteControlWithUndo {
+public class RemoteControl {
 
     Command[] onCommands;
     Command[] offCommands;
-    Command undoCommand;
 
 
-    public RemoteControlWithUndo() {
+    public RemoteControl() {
         this.onCommands = new Command[7];
         this.offCommands = new Command[7];
 
@@ -19,8 +18,6 @@ public class RemoteControlWithUndo {
             onCommands[i] = noCommand;
             offCommands[i] = noCommand;
         }
-
-        this.undoCommand = noCommand;
     }
 
 
@@ -31,16 +28,10 @@ public class RemoteControlWithUndo {
 
     public void onButtonWasPressed(int slot) {
         onCommands[slot].execute();
-        undoCommand = onCommands[slot];
     }
 
     public void offButtonWasPressed(int slot) {
         offCommands[slot].execute();
-        undoCommand = offCommands[slot];
-    }
-
-    public void undoButtonWasPressed() {
-        undoCommand.undo();
     }
 
 
