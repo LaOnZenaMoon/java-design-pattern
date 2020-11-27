@@ -8,6 +8,9 @@ public class SimpleCaffeineApplication {
 
         CaffeineBeverage tea = new Tea();
         tea.prepareRecipe();
+
+        CaffeineBeverage coffeeWithHook = new CoffeeWithHook();
+        coffeeWithHook.prepareRecipe();
     }
 
 }

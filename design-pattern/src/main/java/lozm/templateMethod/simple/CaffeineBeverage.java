@@ -6,7 +6,10 @@ public abstract class CaffeineBeverage {
         boilWater();
         brew();
         pourInCup();
-        addCondiments();
+
+        if(customerWantsCondiments()) {
+            addCondiments();
+        }
     }
 
     abstract void brew();
@@ -19,6 +22,11 @@ public abstract class CaffeineBeverage {
 
     void pourInCup() {
         System.out.println("컵에 따르는중");
+    }
+
+    // hook 메소드
+    boolean customerWantsCondiments() {
+        return true;
     }
 
 }
