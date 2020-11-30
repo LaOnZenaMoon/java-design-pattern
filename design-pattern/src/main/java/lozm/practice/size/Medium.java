@@ -1,7 +1,7 @@
-package lozm.decorator.practice.size;
+package lozm.practice.size;
 
-import lozm.decorator.practice.Component;
-import lozm.decorator.practice.Decorator;
+import lozm.practice.Component;
+import lozm.practice.Decorator;
 
 public class Medium implements Decorator {
 

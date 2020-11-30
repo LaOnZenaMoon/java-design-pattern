@@ -1,7 +1,7 @@
-package lozm.decorator.practice.condition;
+package lozm.practice.condition;
 
-import lozm.decorator.practice.Component;
-import lozm.decorator.practice.Decorator;
+import lozm.practice.Component;
+import lozm.practice.Decorator;
 
 public class Hot implements Decorator {
 

@@ -1,6 +1,7 @@
-package lozm.decorator.practice.coffee;
+package lozm.practice.coffee;
 
-import lozm.decorator.practice.Component;
+
+import lozm.practice.Component;
 
 public class Americano implements Component {
 

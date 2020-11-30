@@ -1,18 +1,18 @@
-package lozm.decorator.practice;
+package lozm.practice;
 
-import lozm.decorator.practice.code.Coffee;
-import lozm.decorator.practice.code.CoffeeOptions;
-import lozm.decorator.practice.code.CoffeeSize;
-import lozm.decorator.practice.code.Condition;
-import lozm.decorator.practice.coffee.*;
-import lozm.decorator.practice.condition.Hot;
-import lozm.decorator.practice.condition.Ice;
-import lozm.decorator.practice.options.Mocha;
-import lozm.decorator.practice.options.Soy;
-import lozm.decorator.practice.options.Whip;
-import lozm.decorator.practice.size.Large;
-import lozm.decorator.practice.size.Medium;
-import lozm.decorator.practice.size.Small;
+import lozm.practice.code.Coffee;
+import lozm.practice.code.CoffeeOptions;
+import lozm.practice.code.CoffeeSize;
+import lozm.practice.code.Condition;
+import lozm.practice.coffee.*;
+import lozm.practice.condition.Hot;
+import lozm.practice.condition.Ice;
+import lozm.practice.options.Mocha;
+import lozm.practice.options.Soy;
+import lozm.practice.options.Whip;
+import lozm.practice.size.Large;
+import lozm.practice.size.Medium;
+import lozm.practice.size.Small;
 
 import java.util.Arrays;
 import java.util.Scanner;

@@ -1,4 +1,4 @@
-package lozm.decorator.practice;
+package lozm.practice;
 
 public interface Component {
 

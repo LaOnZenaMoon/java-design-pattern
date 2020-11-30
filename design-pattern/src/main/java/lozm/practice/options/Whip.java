@@ -1,7 +1,7 @@
-package lozm.decorator.practice.options;
+package lozm.practice.options;
 
-import lozm.decorator.practice.Component;
-import lozm.decorator.practice.Decorator;
+import lozm.practice.Component;
+import lozm.practice.Decorator;
 
 public class Whip implements Decorator {
 
