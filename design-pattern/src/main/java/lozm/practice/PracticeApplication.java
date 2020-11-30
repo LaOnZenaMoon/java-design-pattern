@@ -4,15 +4,7 @@ import lozm.practice.code.Coffee;
 import lozm.practice.code.CoffeeOptions;
 import lozm.practice.code.CoffeeSize;
 import lozm.practice.code.Condition;
-import lozm.practice.coffee.*;
-import lozm.practice.condition.Hot;
-import lozm.practice.condition.Ice;
-import lozm.practice.options.Mocha;
-import lozm.practice.options.Soy;
-import lozm.practice.options.Whip;
-import lozm.practice.size.Large;
-import lozm.practice.size.Medium;
-import lozm.practice.size.Small;
+import lozm.practice.factory.*;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -21,6 +13,11 @@ public class PracticeApplication {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        PracticeFactory coffeeFactory = new CoffeeFactory();
+        PracticeFactory conditionFactory = new ConditionFactory();
+        PracticeFactory sizeFactory = new SizeFactory();
+        PracticeFactory optionsFactory = new OptionsFactory();
+
 
         Component coffee = null;
         while (true) {
@@ -35,18 +32,7 @@ public class PracticeApplication {
             Coffee[] coffees = Coffee.values();
             boolean isCoffee = Arrays.stream(coffees).anyMatch((element -> String.valueOf(element).equals(input)));
             if (isCoffee) {
-                if (input.equals(String.valueOf(Coffee.AMERICANO))) {
-                    coffee = new Americano();
-                } else if (input.equals(String.valueOf(Coffee.LATTE))) {
-                    coffee = new Latte();
-                } else if (input.equals(String.valueOf(Coffee.COLD_BREW))) {
-                    coffee = new ColdBrew();
-                } else if (input.equals(String.valueOf(Coffee.ESPRESSO))) {
-                    coffee = new Espresso();
-                } else if (input.equals(String.valueOf(Coffee.CAPPUCCINO))) {
-                    coffee = new Cappuccino();
-                }
-
+                coffee = coffeeFactory.order(coffee, input);
                 break;
             }
         }
@@ -60,12 +46,7 @@ public class PracticeApplication {
             Condition[] conditions = Condition.values();
             boolean isCondition = Arrays.stream(conditions).anyMatch((element -> String.valueOf(element).equals(input)));
             if (isCondition) {
-                if (input.equals(String.valueOf(Condition.ICE))) {
-                    coffee = new Ice(coffee);
-                } else if (input.equals(String.valueOf(Condition.HOT))) {
-                    coffee = new Hot(coffee);
-                }
-
+                coffee = conditionFactory.order(coffee, input);
                 break;
             }
         }
@@ -80,14 +61,7 @@ public class PracticeApplication {
             CoffeeSize[] coffeeSizes = CoffeeSize.values();
             boolean isCoffeeSize = Arrays.stream(coffeeSizes).anyMatch((element -> String.valueOf(element).equals(input)));
             if (isCoffeeSize) {
-                if (input.equals(String.valueOf(CoffeeSize.SMALL))) {
-                    coffee = new Small(coffee);
-                } else if (input.equals(String.valueOf(CoffeeSize.MEDIUM))) {
-                    coffee = new Medium(coffee);
-                } else if (input.equals(String.valueOf(CoffeeSize.LARGE))) {
-                    coffee = new Large(coffee);
-                }
-
+                coffee = sizeFactory.order(coffee, input);
                 break;
             }
         }
@@ -103,16 +77,11 @@ public class PracticeApplication {
             CoffeeOptions[] coffeeOptions = CoffeeOptions.values();
             boolean isCoffeeOptions = Arrays.stream(coffeeOptions).anyMatch((element -> String.valueOf(element).equals(input.toUpperCase())));
             if (isCoffeeOptions) {
-                if (input.equals(String.valueOf(CoffeeOptions.SOY))) {
-                    coffee = new Soy(coffee);
-                } else if (input.equals(String.valueOf(CoffeeOptions.MOCHA))) {
-                    coffee = new Mocha(coffee);
-                } else if (input.equals(String.valueOf(CoffeeOptions.WHIP))) {
-                    coffee = new Whip(coffee);
-                } else if (input.equals(String.valueOf(CoffeeOptions.END))) {
+                if (input.equals(String.valueOf(CoffeeOptions.END))) {
                     break;
                 }
 
+                coffee = optionsFactory.order(coffee, input);
                 continue;
             }
         }
