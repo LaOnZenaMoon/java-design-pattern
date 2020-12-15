@@ -11,6 +11,8 @@ public class BallMachine {
     private State state = soldOutState;
     private int count = 0;
 
+    private String location;
+
 
     public BallMachine(int count) {
         this.count = count;
@@ -24,6 +26,22 @@ public class BallMachine {
         if (count > 0) {
             state = noQuarterState;
         }
+    }
+
+    public BallMachine(String location, int count) {
+        this.count = count;
+
+        soldState = new SoldState(this);
+        soldOutState = new SoldOutState(this);
+        noQuarterState = new NoQuarterState(this);
+        hasQuarterState = new HasQuarterState(this);
+        winnerState = new WinnerState(this);
+
+        if (count > 0) {
+            state = noQuarterState;
+        }
+
+        this.location = location;
     }
 
 
@@ -78,4 +96,9 @@ public class BallMachine {
     public State getWinnerState() {
         return winnerState;
     }
+
+    public String getLocation() {
+        return location;
+    }
+
 }
