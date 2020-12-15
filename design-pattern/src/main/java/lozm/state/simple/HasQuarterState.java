@@ -1,8 +1,11 @@
 package lozm.state.simple;
 
+import java.util.Random;
+
 public class HasQuarterState implements State {
 
     BallMachine ballMachine;
+    Random randomWinner = new Random(System.currentTimeMillis());
 
 
     public HasQuarterState(BallMachine ballMachine) {
@@ -24,7 +27,13 @@ public class HasQuarterState implements State {
     @Override
     public void turnCrank() {
         System.out.println("손잡이를 돌리셨습니다.");
-        ballMachine.setState(ballMachine.getSoldState());
+        int winner = randomWinner.nextInt(10);
+        if ((winner == 0) && (ballMachine.getCount() > 1)) {
+            ballMachine.setState(ballMachine.getWinnerState());
+        } else {
+            ballMachine.setState(ballMachine.getSoldState());
+        }
+
     }
 
     @Override

@@ -6,6 +6,7 @@ public class BallMachine {
     private State soldOutState;
     private State noQuarterState;
     private State hasQuarterState;
+    private State winnerState;
 
     private State state = soldOutState;
     private int count = 0;
@@ -18,6 +19,7 @@ public class BallMachine {
         soldOutState = new SoldOutState(this);
         noQuarterState = new NoQuarterState(this);
         hasQuarterState = new HasQuarterState(this);
+        winnerState = new WinnerState(this);
 
         if (count > 0) {
             state = noQuarterState;
@@ -73,4 +75,7 @@ public class BallMachine {
         return count;
     }
 
+    public State getWinnerState() {
+        return winnerState;
+    }
 }
