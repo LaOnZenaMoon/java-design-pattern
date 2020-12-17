@@ -1,4 +1,4 @@
-package lozm.proxy;
+package lozm.proxy.remoteProxy;
 
 import lozm.state.simple.BallMachine;
 
