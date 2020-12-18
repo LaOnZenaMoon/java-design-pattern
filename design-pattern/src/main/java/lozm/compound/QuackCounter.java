@@ -1,7 +1,5 @@
 package lozm.compound;
 
-import java.util.Observer;
-
 public class QuackCounter implements Quackable {
 
     private Quackable duck;
@@ -19,7 +17,7 @@ public class QuackCounter implements Quackable {
         numberOfCounts++;
     }
 
-    public int getQuackCounts() {
+    public static int getQuackCounts() {
         return numberOfCounts;
     }
 
