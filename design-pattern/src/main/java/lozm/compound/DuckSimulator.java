@@ -16,15 +16,19 @@ public class DuckSimulator {
         Quackable goose = new GooseAdapter(new Goose());
 
         System.out.println("Duck Simulator: With composite pattern - Flock");
-
         Flock flock = new Flock();
+        flock.add(mallardDuck);
         flock.add(redHeadDuck);
         flock.add(duckCall);
         flock.add(rubberDuck);
         flock.add(goose);
+//        System.out.println("Duck Simulator: Whole flock simulation");
+//        simulate(flock);
 
-        System.out.println("Duck Simulator: Whole flock simulation");
+        System.out.println("Duck Simulator: With observer pattern");
 
+        QuackLogist quackLogist = new QuackLogist();
+        flock.registerObserver(quackLogist);
         simulate(flock);
 
         System.out.println("The ducks quacked " + QuackCounter.getQuackCounts() + "times.");
